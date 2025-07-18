@@ -388,7 +388,7 @@ class WSFEv1(BaseWS):
                 # verifico los campos registrados coincidan con los enviados:
                 f = self.factura
                 verificaciones = {
-                    "CondicionIVAReceptorId": f.get("condicion_iva_receptor_id"),
+                    "CondicionIVAReceptorId": f.get("condicion_iva_receptor"),
                     'Concepto': f['concepto'],
                     'DocTipo': f['tipo_doc'],
                     'DocNro': f['nro_doc'],
