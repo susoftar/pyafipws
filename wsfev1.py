@@ -134,7 +134,7 @@ class WSFEv1(BaseWS):
             cbt_desde=0, cbt_hasta=0, imp_total=0.00, imp_tot_conc=0.00, imp_neto=0.00,
             imp_iva=0.00, imp_trib=0.00, imp_op_ex=0.00, fecha_cbte="", fecha_venc_pago=None,
             fecha_serv_desde=None, fecha_serv_hasta=None, #--
-            moneda_id="PES", moneda_ctz="1.0000", caea=None, fecha_hs_gen=None, **kwargs
+            moneda_id="PES", moneda_ctz="1.0000", caea=None, fecha_hs_gen=None, condicion_iva_receptor=None, **kwargs
             ):
 
         "Creo un objeto factura (interna)"
@@ -245,6 +245,7 @@ class WSFEv1(BaseWS):
                              'PtoVta': f['punto_vta'],
                              'CbteTipo': f['tipo_cbte']},
                 'FeDetReq': [{'FECAEDetRequest': {
+                    "CondicionIVAReceptorId": f.get("condicion_iva_receptor"),
                     'Concepto': f['concepto'],
                     'DocTipo': f['tipo_doc'],
                     'DocNro': f['nro_doc'],
@@ -387,6 +388,7 @@ class WSFEv1(BaseWS):
                 # verifico los campos registrados coincidan con los enviados:
                 f = self.factura
                 verificaciones = {
+                    "CondicionIVAReceptorId": f.get("condicion_iva_receptor_id"),
                     'Concepto': f['concepto'],
                     'DocTipo': f['tipo_doc'],
                     'DocNro': f['nro_doc'],
